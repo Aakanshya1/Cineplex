@@ -1,10 +1,17 @@
 const express = require("express");
 const db = require("./models");
-
+const bodyParser = require("body-parser");
 const app = express();
-const PORT = 5000;
+const PORT = 3001;
 
 app.use(express.json());
+app.use(bodyParser.json());
+
+const userRouter = require("./router/user.router");
+
+
+  app.use("/auth", userRouter);
+
 
 app.get("/", (req, res) => {
   res.send("Cineplex API running");
@@ -24,3 +31,5 @@ db.sequelize.authenticate()
   .catch((err) => {
     console.error(" Database connection failed:", err);
   });
+
+

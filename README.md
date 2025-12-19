@@ -36,8 +36,8 @@ A full-stack movie platform built with **React, Node.js, Express, Sequelize**, a
 
 ```
 cineplex/
-├── backend/
-├── frontend/
+├── cineplex-backend/
+├── cineplex-frontend/
 ```
 
 ---
@@ -49,7 +49,7 @@ cineplex/
 ```bash
 cd backend
 npm install
-npm run dev
+nodemon app.js
 ```
 
 ### Frontend

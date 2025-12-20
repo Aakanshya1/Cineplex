@@ -4,7 +4,7 @@ const models = require("../models");
 const {Watchlist, Movie} = models;
 
 
-const addWatchlist = catchAsync(async (req, res, next) => {
+const addWatchlist = catchAsync(async (req, res) => {
     try {
             const {movieId} = req.body;
             const userId = req.user.id;
@@ -57,7 +57,37 @@ const getWatchlist = catchAsync(async (req, res, next) => {
     }
 });
 
+const deletewatchlist = catchAsync(async (req,res)=>{
+    try {
+        const userId = req.user.id;
+        const {movieId} = req.body;
+        const watchlistItem = await Watchlist.findOne({
+            where:{
+                UserId:userId,
+                MovieId:movieId
+            }
+        });
+        if(!watchlistItem){
+            return res.status(404)
+            .json({
+                message:"Movie not found in watchlist"
+            })
+        }
+        await watchlistItem.destroy();
+        res.status(200)
+        .json({
+            message:"Movie removed from watchlist successfully"
+        })
+    } catch (error) {
+        res.status(500)
+        .json({
+            message:"Internal Server Error"
+        })
+    }
+})
+
 module.exports = {
     addWatchlist,
-    getWatchlist
+    getWatchlist,
+    deletewatchlist
 };

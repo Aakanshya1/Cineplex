@@ -8,10 +8,10 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 const userRouter = require("./router/user.router");
-
+const watchlistRouter = require("./router/watchlist.router");
 
   app.use("/auth", userRouter);
-
+  app.use("/watchlist", watchlistRouter);
 
 app.get("/", (req, res) => {
   res.send("Cineplex API running");

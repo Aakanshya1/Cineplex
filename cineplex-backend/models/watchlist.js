@@ -10,8 +10,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Watchlist.belongsTo(models.User);
-      Watchlist.belongsTo(models.Movie);
+      Watchlist.belongsTo(models.User,{
+        foreignKey: 'UserId',
+        onDelete: 'CASCADE'
+      });
+      Watchlist.belongsTo(models.Movie,{
+        foreignKey: 'MovieId',
+        onDelete: 'CASCADE'
+      });
 
     }
   }

@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const models = require("../models");
 const {User } = models; 
-const AuthControllers = {};
+
 
 
 const register = catchAsync(async (req, res, next) => {

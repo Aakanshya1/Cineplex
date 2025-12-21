@@ -1,6 +1,7 @@
 import React from 'react'
 import home1 from '../assets/images/home1.jpg'
 import Button from '../components/Button'
+import {Link} from 'react-router-dom'
 function Landing() {
   return (
     <>
@@ -16,7 +17,7 @@ function Landing() {
                 <h1 className=' text-2xl md:text-4xl uppercase font-extrabold bebas'>Discover, Track & Watch Your Favourite
                     <br /> movies & Series</h1>
                 <p>Find IMDb ratings, watch links and trending titles all in one place.</p>
-                <Button text="Explore Now" isprimary/>
+               <Link to='/login' className='cursor'><Button text="Explore Now" isprimary/></Link> 
             </div>
 
     </section>

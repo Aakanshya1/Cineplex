@@ -2,6 +2,7 @@ import React from 'react'
 import Button from '../components/Button'
 import home1 from '../assets/images/home1.jpg'
 import { FaGoogle } from "react-icons/fa";
+import {Link} from 'react-router-dom'
 
 function Signup() {
   return (
@@ -25,7 +26,7 @@ function Signup() {
            <input type="text" className='bg-[#333333] rounded-md p-2 text-xs ' placeholder='Email'/>
            <input type="password" className='bg-[#333333] rounded-md p-2 text-xs' placeholder='Password'/>
            <Button text="Signup" isprimary/>
-            <p className='text-xs text-right'>Don't have an account? Signup</p>
+            <p className='text-xs text-right'>Don't have an account? <Link to="/login" className='cursor'>Login</Link></p>
             <span className='text-center'>OR</span>
                 <span className='text-center border p-2 rounded-md'>Signup with Google <FaGoogle className='inline ml-2' /></span>
             </form>

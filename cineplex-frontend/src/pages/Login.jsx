@@ -1,6 +1,7 @@
 import React from 'react'
 import home1 from '../assets/images/home1.jpg'
 import Button from '../components/Button'
+import {Link} from 'react-router-dom'
 function Login() {
   return (
     <>
@@ -20,7 +21,7 @@ function Login() {
            <input type="password" className='bg-[#333333] rounded-md p-2 text-xs' placeholder='Password'/>
            <Button text="Login" isprimary/>
             </form>
-            <p className='text-xs text-right'>Don't have an account? Signup</p>
+            <p className='text-xs text-right'>Don't have an account? <Link to="/signup">Signup</Link></p>
             </div>
 
 

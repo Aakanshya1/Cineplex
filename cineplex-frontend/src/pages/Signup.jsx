@@ -11,7 +11,7 @@ function Signup() {
             <img src={home1} alt="" srcset="" className='w-full h-full absolute'/>
             <div className='absolute inset-0 bg-black/50'></div>
 
-            <div className=' absolute inset-0 text-white  bg-black/70 flex flex-col justify-center w-[30%] h-fit mx-auto gap-5 p-10  my-auto '>
+            <div className=' absolute inset-0 text-white  bg-black/70 flex flex-col justify-center w-[50%] md:w-[30%] h-fit mx-auto gap-5 p-10  my-auto '>
                 <div>
                 <span className='relative z-10 text-white text-3xl font-extrabold  '> <span className='text-red-600 '>C</span>INEPLEX</span>
 

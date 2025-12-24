@@ -75,8 +75,12 @@ const login = catchAsync(async (req, res, next) => {
         }
     )
     res.status(200).json({
-        message:"Login successful",
-        token
+       message: "Login successful",
+      success: true,
+      jwtToken: token,
+      _id: existinguser._id,
+      name: existinguser.name,
+      role: existinguser.role
     })
     } catch (error) {
         console.log("Error during login:",error)

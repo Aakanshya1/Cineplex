@@ -33,8 +33,9 @@ const handlepassword = () => {
     e.preventDefault();
     
     const{email,password}=loginInfo;
-       console.log("Login Info:", loginInfo); 
+      
     let newErrors ={};
+   
 
    if(!email){
     newErrors.email = "Email is required";
@@ -42,6 +43,10 @@ const handlepassword = () => {
     if(!password){
     newErrors.password = "Password is required";
    }
+   if (Object.keys(newErrors).length > 0) {
+  setErrors(newErrors);
+  return;
+}
    console.log("API URL:", import.meta.env.VITE_API_URL);
 
    try {
@@ -54,7 +59,7 @@ const handlepassword = () => {
     });
 
     const result = await response.json();
-    console.log("Login response:", result);
+
 
     if (!response.ok || !result.success) {
       setErrors({ general: result.message || "Login failed" });

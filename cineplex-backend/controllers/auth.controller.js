@@ -95,6 +95,11 @@ const getprofile = catchAsync(async(req, res, next) => {
                 message:"User not found"
             })
         }
+        res.status(200)
+        .json({
+            message:"user retrived successfully",
+            user:user
+        })
     } catch (error){
         return res.status(400)
         .json({

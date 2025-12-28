@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 const userRouter = require("./router/user.router");
 const watchlistRouter = require("./router/watchlist.router");
-
+const reviewRouter = require('./router/review.router')
  
 
 app.get("/", (req, res) => {
@@ -32,7 +32,7 @@ app.use(cors());
 //Routes
  app.use("/auth", userRouter);
   app.use("/watchlist", watchlistRouter);
-
+  app.use("/review", reviewRouter)
 
 db.sequelize.authenticate()
   .then(() => {

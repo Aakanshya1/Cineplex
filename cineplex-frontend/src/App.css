@@ -25,3 +25,14 @@ body{
   font-family: "Bebas Neue", sans-serif;
   font-style: normal;
 }
+
+.swiper-button-next,
+.swiper-button-prev {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.relative:hover .swiper-button-next,
+.relative:hover .swiper-button-prev {
+  opacity: 1;
+}

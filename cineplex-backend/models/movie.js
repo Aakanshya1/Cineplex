@@ -16,9 +16,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Movie.init({
-    imdbId: DataTypes.STRING,
-    title: DataTypes.STRING,
-    poster: DataTypes.STRING
+   tmdbId: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true
+      }
   }, {
     sequelize,
     modelName: 'Movie',

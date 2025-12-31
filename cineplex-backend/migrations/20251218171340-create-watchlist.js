@@ -27,6 +27,10 @@ module.exports = {
         },
         onDelete: 'CASCADE'
       },
+      status:{
+        type:Sequelize.ENUM("planned", "watching", "completed"),
+    defaultValue: "planned"
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

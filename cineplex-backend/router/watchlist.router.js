@@ -4,5 +4,5 @@ const {loginToken} = require('../middleware/auth');
 
 router.post('/add', loginToken, addWatchlist);
 router.get('/getlist', loginToken, getWatchlist);
-router.delete('/deletelist', loginToken, deletewatchlist);
+router.delete('/deletelist/:id', loginToken, deletewatchlist);
 module.exports = router;

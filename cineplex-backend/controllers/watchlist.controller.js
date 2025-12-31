@@ -17,6 +17,7 @@ const addWatchlist = catchAsync(async (req, res) => {
                 message:"Movie already exist in your watchlist"
             })
         }
+        
         const watchlist = await Watchlist.create({
             UserId:userId,
             MovieId:movieId
@@ -29,9 +30,12 @@ const addWatchlist = catchAsync(async (req, res) => {
     } catch (error) {
         res.status(500)
         .json({
-            message:"Internal Server Error"
+            message:"Internal Server Error "
+            
         })
+        console.log(error)
     }
+    
 });
 
 const getWatchlist = catchAsync(async (req, res, next) => {
@@ -61,6 +65,7 @@ const deletewatchlist = catchAsync(async (req,res)=>{
     try {
         const userId = req.user.id;
         const {movieId} = req.body;
+        console.log(userId)
         const watchlistItem = await Watchlist.findOne({
             where:{
                 UserId:userId,

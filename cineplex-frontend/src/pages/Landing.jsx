@@ -1,6 +1,6 @@
 import React from 'react'
 import home1 from '../assets/images/home1.jpg'
-import Button from '../components/Button'
+import Button from '../components/ui/Button'
 import {Link} from 'react-router-dom'
 function Landing() {
   return (

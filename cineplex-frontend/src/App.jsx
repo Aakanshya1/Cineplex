@@ -7,12 +7,10 @@ import RefreshHandler from './components/auth/RefreshHandler'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
-
+import ProtectedRoute from './components/auth/ProtectedRoute'
+import MainLayout from './layouts/MainLayout'
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const PrivateRoute =({element})=>{
-    return isAuthenticated ? element : <Navigate to="/" />;
-  }
 
   
   return (
@@ -22,7 +20,7 @@ function App() {
           <Route path='/' element={<Landing />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
-          <Route path='/home' element={<PrivateRoute element={<Home />} />} />
+          <Route path='/home' element={<ProtectedRoute><MainLayout><Home/></MainLayout></ProtectedRoute>} />
         </Routes>
     </>
   )

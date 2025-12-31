@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import home1 from '../assets/images/home1.jpg'
-import Button from '../components/Button'
+import Button from '../components/ui/Button'
 import {Link,useNavigate} from 'react-router-dom'
 import {IoMdMail} from 'react-icons/io'
 import {IoMdEye,IoMdEyeOff} from 'react-icons/io'

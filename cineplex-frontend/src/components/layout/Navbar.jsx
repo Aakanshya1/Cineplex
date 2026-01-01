@@ -1,24 +1,40 @@
 import React from 'react'
-import { FaUser } from "react-icons/fa";
+import { navLinks } from '../../constants/constants'
+import {NavLink,useNavigate} from 'react-router-dom'
+import Button from '../ui/Button'
 import { CiLogout } from "react-icons/ci";
-import { FaHome } from "react-icons/fa";
-import { FaCompass } from "react-icons/fa";
-import { MdLibraryAdd } from "react-icons/md";
+
 function Navbar() {
+  const [isAuthenticated, setIsAuthenticated] = React.useState(!!localStorage.getItem('jwtToken'));
+
+  const navigate=useNavigate();
+  const handleLogout=()=>{
+    localStorage.removeItem('jwtToken');
+    setIsAuthenticated(false);
+    navigate('/login');
+  }
   return (
    <>
-   <div className=' text-white  w-full absolute montserrat z-20 flex items-center justify-center '>
+   <div className=' text-white fixed  w-full  montserrat z-20 flex items-center justify-center bg-black/30'>
     <div className='w-[90%] flex flex-row justify-between md:gap-40 p-4 items-center'>
-       <div className='text-4xl font-bold  '><span className='text-red-700'>C</span>ineplex</div>
+       <div className='text-4xl font-bold  ' onClick={()=>navigate("/home")}><span className='text-red-700'>C</span>ineplex</div>
     <div className='md:w-full  items-center text-center '>
-      <input type="search" className='border rounded-md p-1 text-white w-full  md:w-[40%] text-center italic'  placeholder='Search movies....'/>
+      <input type="search" className='border rounded-md p-1 text-white w-full   text-center italic'  placeholder='Search movies....'/>
     </div>
+
+
     <div className='flex flex-row justify-between gap-10  text-[18px] p-2 items-center'>
-            <div className='flex items-center'><FaHome/> Home</div>
-            <div className='flex items-center'><FaCompass/> Explore</div>
-            <div className='flex items-center'><MdLibraryAdd/> Library</div>
-            <div className='text-xl '><CiLogout /></div>
-            <div><FaUser/></div>
+      {navLinks.map((link)=>(
+        <NavLink key={link.path}
+        to={link.path}
+        className={({isActive})=> isActive ? 'text-red-600 flex items-center gap-2 font-bold' : 'flex items-center gap-2'}
+        >
+          <link.icon />
+          {link.name}
+
+        </NavLink>
+      ))}
+      <Button title="Logout" isprimary onClick={handleLogout} text={<CiLogout className="text-black font-bold" />}  />
     </div>
     </div>
    

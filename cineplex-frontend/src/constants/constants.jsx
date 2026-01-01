@@ -6,6 +6,12 @@ import first from '../assets/images/strangerthings.webp'
 import second from '../assets/images/squid.webp'
 import third from '../assets/images/alice.jpg'
 
+import { FaUser } from "react-icons/fa";
+
+import { FaHome } from "react-icons/fa";
+import { FaCompass } from "react-icons/fa";
+import { MdLibraryAdd } from "react-icons/md";
+
 export const herocarousel = [
   {
     id: 1,
@@ -32,4 +38,12 @@ export const carouselHome = [
   { id: 6, title: "Squid Game", img: two },
   { id: 7, title: "Alice In Borderland", img: three },
   { id: 8, title: "Stranger Things", img: four },
+];
+
+
+export const navLinks = [
+  { name: "Home", path: "/home", icon: FaHome },
+  { name: "Explore", path: "/explore", icon: FaCompass },
+  { name: "Watchlist", path: "/watchlist", icon: MdLibraryAdd },
+  { name: "Profile", path: "/profile", icon: FaUser },
 ];

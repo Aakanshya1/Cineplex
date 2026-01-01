@@ -9,6 +9,9 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import ProtectedRoute from './components/auth/ProtectedRoute'
 import MainLayout from './layouts/MainLayout'
+import Explore from './pages/Explore'
+import Watchlist from './pages/Watchlist'
+import Profile from './pages/Profile'
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -21,6 +24,10 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/home' element={<ProtectedRoute><MainLayout><Home/></MainLayout></ProtectedRoute>} />
+           <Route path='/explore' element={<ProtectedRoute><MainLayout><Explore/></MainLayout></ProtectedRoute>} />
+          <Route path='/watchlist' element={<ProtectedRoute><MainLayout><Watchlist/></MainLayout></ProtectedRoute>} />
+          <Route path='/profile' element={<ProtectedRoute><MainLayout><Profile/></MainLayout></ProtectedRoute>} />
+
         </Routes>
     </>
   )

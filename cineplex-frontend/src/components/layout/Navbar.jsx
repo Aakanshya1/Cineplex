@@ -7,8 +7,9 @@ import { MdLibraryAdd } from "react-icons/md";
 function Navbar() {
   return (
    <>
-   <div className=' text-white flex flex-row justify-between md:gap-40 p-4 items-center '>
-    <div className='text-4xl font-bold  '><span className='text-red-700'>C</span>ineplex</div>
+   <div className=' text-white  w-full absolute montserrat z-20 flex items-center justify-center '>
+    <div className='w-[90%] flex flex-row justify-between md:gap-40 p-4 items-center'>
+       <div className='text-4xl font-bold  '><span className='text-red-700'>C</span>ineplex</div>
     <div className='md:w-full  items-center text-center '>
       <input type="search" className='border rounded-md p-1 text-white w-full  md:w-[40%] text-center italic'  placeholder='Search movies....'/>
     </div>
@@ -19,6 +20,8 @@ function Navbar() {
             <div className='text-xl '><CiLogout /></div>
             <div><FaUser/></div>
     </div>
+    </div>
+   
    </div>
    </>
   )

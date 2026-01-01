@@ -17,6 +17,7 @@ function CardCarousel({ movies }) {
       setIndex(index - 1);
     }
   };
+  
 
   return (
     <div className="relative overflow-hidden w-full">
@@ -32,7 +33,12 @@ function CardCarousel({ movies }) {
             key={movie.id}
             className="min-w-50 mx-2 bg-zinc-900 rounded-xl overflow-hidden shadow-lg"
           >
-                <div className="h-64 w-full object-cover">{movie.img}</div>
+               <img
+  src={movie.img}
+  alt={movie.title}
+  className="h-64 w-full object-cover"
+/>
+
         
             <div className="p-3 text-center text-white font-semibold">
               {movie.title}

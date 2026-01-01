@@ -1,9 +1,14 @@
 import React from 'react'
 import CardCarousel from '../components/ui/CardCarousel'
-import { carouselHome } from '../constants/constants'
+import { carouselHome,herocarousel } from '../constants/constants'
+import HomeCarousel from '../components/ui/HomeCarousel'
+
 function Home() {
   return (
    <>
+   <section>
+    <HomeCarousel movies={herocarousel} />
+   </section>
    <section>
     <div className="min-h-screen bg-black text-white">
       <div className="p-6">

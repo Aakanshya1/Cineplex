@@ -3,28 +3,39 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Movies', {
-      id: {
+    id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      imdbId: {
-        type: Sequelize.STRING
+      tmdbId: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
       },
       title: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       poster: {
         type: Sequelize.STRING
       },
+      releaseDate: {
+        type: Sequelize.DATE
+      },
+      rating: {
+        type: Sequelize.FLOAT
+      },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('NOW')
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('NOW')
       }
     });
   },

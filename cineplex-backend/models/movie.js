@@ -15,13 +15,17 @@ module.exports = (sequelize, DataTypes) => {
 
     }
   }
-  Movie.init({
-   tmdbId: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
-      }
-  }, {
+ Movie.init({
+  tmdbId: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true
+  },
+  title: DataTypes.STRING,
+  poster: DataTypes.STRING,
+  releaseDate: DataTypes.DATE,
+  rating: DataTypes.FLOAT
+},  {
     sequelize,
     modelName: 'Movie',
   });

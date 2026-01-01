@@ -12,10 +12,12 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Watchlist.belongsTo(models.User,{
         foreignKey: 'UserId',
+        as:'user',
         onDelete: 'CASCADE'
       });
       Watchlist.belongsTo(models.Movie,{
         foreignKey: 'MovieId',
+        as:'movie',
         onDelete: 'CASCADE'
       });
 

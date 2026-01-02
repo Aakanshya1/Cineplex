@@ -47,3 +47,54 @@ export const navLinks = [
   { name: "Watchlist", path: "/watchlist", icon: MdLibraryAdd },
   { name: "Profile", path: "/profile", icon: FaUser },
 ];
+
+export const genre =[
+  {
+    label: 'Action',
+    value: 'action'
+  },
+  {    label: 'Comedy',
+    value: 'comedy'
+  },
+  {    label: 'Drama',
+    value: 'drama'
+  },  
+  {    label: 'Horror',
+    value: 'horror'
+  },
+  {    label: 'Romance',
+    value: 'romance'
+  },
+  {    label: 'Sci-Fi',
+    value: 'sci-fi'
+  },
+  {
+    label: 'Thriller',
+    value: 'thriller'
+  },
+  {
+    label: 'Fantasy',
+    value: 'fantasy',
+  }
+]
+
+export const channels =[
+  {    label: 'Netflix',
+    value: 'netflix'
+  },
+  {    label: 'Amazon Prime',
+    value: 'amazon-prime'
+  },
+  {    label: 'Hulu',
+    value: 'hulu'
+  },  
+  {    label: 'Disney+',
+    value: 'disney-plus'
+  },
+  {    label: 'HBO Max',
+    value: 'hbo-max'
+  },
+  {    label: 'Apple TV+',
+    value: 'apple-tv-plus'
+  }
+]

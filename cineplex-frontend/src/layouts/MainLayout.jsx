@@ -7,7 +7,7 @@ function MainLayout({children}) {
    <div className='relative'>
     <Navbar />
    
-   <div className=''>{children}</div>
+   <div className=" pb-12 md:pb-0">{children}</div>
    </div>
   
    </>

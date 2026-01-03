@@ -10,7 +10,7 @@ function Profile() {
   const [error, setError] = useState(null)
   const [editMode, setEditMode] = useState(false)
   const [avatarFile, setAvatarFile] = useState(null)
-
+  const [avatarPreview, setAvatarPreview] = useState(null)
   const token = localStorage.getItem("jwtToken")
 
   useEffect(() => {
@@ -53,7 +53,7 @@ function Profile() {
   const handleSave = async () => {
     try {
       await axios.put(
-        `${import.meta.env.VITE_API_URL}/api/user/profile`,
+        `${import.meta.env.VITE_API_URL}/auth/update`,
         user,
         { headers: { Authorization: `Bearer ${token}` } }
       )
@@ -63,29 +63,44 @@ function Profile() {
     }
   }
 
-  const handleAvatarUpload = async () => {
-    if (!avatarFile) return
+const handleAvatarUpload = async () => {
+  if (!avatarFile) return;
 
-    const formData = new FormData()
-    formData.append("avatar", avatarFile)
+  const formData = new FormData();
+  formData.append("avatar", avatarFile);
 
-    try {
-      const res = await axios.put(
-        `${import.meta.env.VITE_API_URL}/api/user/avatar`,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data"
-          }
+  try {
+    const res = await axios.put(
+      `${import.meta.env.VITE_API_URL}/auth/uploadavatar`,
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data"
         }
-      )
+      }
+    );
 
-      setUser(prev => ({ ...prev, avatar: res.data.avatar }))
-    } catch {
-      alert("Avatar upload failed")
+   
+    setUser(prev => ({ ...prev, avatar: res.data.avatar }));
+    
+    setAvatarPreview(null);
+    setAvatarFile(null);
+
+  } catch (err) {
+    alert("Avatar upload failed");
+    console.error(err.response?.data || err.message);
+  }
+};
+
+
+  useEffect(() => {
+  return () => {
+    if (avatarPreview) {
+      URL.revokeObjectURL(avatarPreview)
     }
   }
+}, [avatarPreview])
 
   const handleLogout = () => {
     localStorage.removeItem("jwtToken")
@@ -100,34 +115,40 @@ function Profile() {
     <section className="min-h-screen bg-black text-white flex justify-center pt-20">
       <div className="bg-white/10 p-8 rounded-xl w-full max-w-md flex flex-col gap-6">
 
-        {/* Avatar */}
+      
       <div className="flex flex-col items-center gap-3">
 
-  {/* Hidden file input */}
   <input
     type="file"
     id="avatarInput"
     accept="image/*"
-    onChange={(e) => setAvatarFile(e.target.files[0])}
+    onChange={(e) => {
+  const file = e.target.files[0]
+  if (!file) return
+  setAvatarFile(file)
+  setAvatarPreview(URL.createObjectURL(file))
+}}
     className="hidden"
   />
 
-  {/* Clickable avatar */}
+  
   <label htmlFor="avatarInput" className="cursor-pointer group">
     <div className="relative">
-      <img
-        src={user.avatar || "/default-avatar.png"}
-        className="w-24 h-24 rounded-full object-cover border border-white/20 group-hover:opacity-80 transition"
-      />
+     <img
+  src={avatarPreview || `${import.meta.env.VITE_API_URL}${user.avatar}` || "/default-avatar.png"}
+  className="w-24 h-24 rounded-full object-cover border border-white/20 group-hover:opacity-80 transition"
+/>
 
-      {/* Hover overlay */}
+
+
+     
       <div className="absolute inset-0 flex items-center justify-center bg-black/40 text-xs text-white opacity-0 group-hover:opacity-100 transition rounded-full">
         Change
       </div>
     </div>
   </label>
 
-  {/* Upload button */}
+
   {avatarFile && (
     <button
       onClick={handleAvatarUpload}
@@ -138,7 +159,7 @@ function Profile() {
   )}
 </div>
 
-        {/* Fields */}
+        
         <div className="flex flex-col gap-4">
           <input
             name="name"
@@ -168,7 +189,7 @@ function Profile() {
           </div>
         </div>
 
-        {/* Actions */}
+     
         {editMode ? (
           <button onClick={handleSave} className="bg-green-600 py-2 rounded">
             Save Changes

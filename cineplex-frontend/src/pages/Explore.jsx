@@ -18,20 +18,21 @@ function Explore() {
   }
 
   return (
-<section className="h-screen bg-black text-white flex">
-  {/* LEFT */}
-  <div className="flex flex-col w-3/4 pt-20">
-
-    <div className="p-10 flex flex-col gap-6 sm:flex-row shrink-0">
+<section className="h-screen bg-black text-white flex flex-col md:flex-row">
+  {/* LEFT: Filters + Movies */}
+  <div className="flex flex-col lg:w-3/4 w-full pt-20">
+    {/* Filters */}
+    <div className="p-6 md:p-10 flex flex-col gap-4 sm:flex-row">
       <Dropdown label="Genre" items={genre} onSelect={console.log} />
       <Dropdown label="Channel" items={channels} onSelect={console.log} />
       <Dropdown label="Rating" items={ratings} onSelect={console.log} />
       <Dropdown label="Sort By" items={sortby} onSelect={console.log} />
     </div>
 
-    <div className="flex-1 overflow-y-auto px-10 pb-10">
+    {/* Movie Grid */}
+    <div className="flex-1 lg:overflow-y-auto px-6 md:px-10 pb-10">
       <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-        {allMovies.map(movie => (
+        {allMovies.map((movie) => (
           <MovieCard
             key={movie.id}
             movie={movie}
@@ -42,9 +43,14 @@ function Explore() {
     </div>
   </div>
 
-  <div className="hidden md:block w-1/4 sticky top-0 h-screen border-l border-white/10">
+  {/* RIGHT: Movie Details Panel */}
+  <div className="hidden lg:block lg:w-1/4 sticky top-0 h-screen border-l border-white/10">
     {selectedMovie ? (
-      <MovieDetailsPanel movie={selectedMovie} onClose={() => setSelectedMovie(null)}  mode="explore"/>
+      <MovieDetailsPanel
+        movie={selectedMovie}
+        onClose={() => setSelectedMovie(null)}
+        mode="explore"
+      />
     ) : (
       <div className="h-full flex items-center justify-center text-gray-500">
         Select a movie
@@ -52,6 +58,7 @@ function Explore() {
     )}
   </div>
 </section>
+
 
   )
 }

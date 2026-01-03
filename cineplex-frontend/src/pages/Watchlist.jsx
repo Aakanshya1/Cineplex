@@ -17,11 +17,11 @@ function Watchlist() {
   }
 
   return (
-    <section className="h-screen bg-black text-white flex">
+    <section className="h-screen bg-black text-white flex flex-col md:flex-row">
       {/* LEFT */}
-      <div className="flex flex-col w-3/4">
+      <div className="flex flex-col lg:w-3/4 w-full pt-10">
 
-        <div className="p-10 shrink-0">
+        <div className="p-10  shrink-0">
           <h1 className="text-3xl font-bold">My Watchlist</h1>
         </div>
 
@@ -44,7 +44,7 @@ function Watchlist() {
       </div>
 
       {/* RIGHT */}
-      <div className="hidden md:block w-1/4 sticky top-0 h-screen border-l border-white/10">
+      <div className="hidden lg:block lg:w-1/4 sticky top-0 h-screen border-l border-white/10">
         {selectedMovie ? (
           <MovieDetailsPanel movie={selectedMovie} onClose={() => setSelectedMovie(null)}  mode="watchlist" />
         ) : (

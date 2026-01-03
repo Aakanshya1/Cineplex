@@ -28,7 +28,7 @@ function App() {
            <Route path='/explore' element={<ProtectedRoute><MainLayout><Explore/></MainLayout></ProtectedRoute>} />
           <Route path='/watchlist' element={<ProtectedRoute><MainLayout><Watchlist/></MainLayout></ProtectedRoute>} />
           <Route path='/profile' element={<ProtectedRoute><MainLayout><Profile/></MainLayout></ProtectedRoute>} />
-          <Route path='/movie/:id' element={<ProtectedRoute><MainLayout><MovieDetails/></MainLayout></ProtectedRoute>} />
+          <Route path='/movie/:id' element={<ProtectedRoute><MovieDetails/></ProtectedRoute>} />
 
         </Routes>
     </>

@@ -12,6 +12,7 @@ import MainLayout from './layouts/MainLayout'
 import Explore from './pages/Explore'
 import Watchlist from './pages/Watchlist'
 import Profile from './pages/Profile'
+import MovieDetails from './pages/MovieDetails'
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -27,10 +28,13 @@ function App() {
            <Route path='/explore' element={<ProtectedRoute><MainLayout><Explore/></MainLayout></ProtectedRoute>} />
           <Route path='/watchlist' element={<ProtectedRoute><MainLayout><Watchlist/></MainLayout></ProtectedRoute>} />
           <Route path='/profile' element={<ProtectedRoute><MainLayout><Profile/></MainLayout></ProtectedRoute>} />
+          <Route path='/movie/:id' element={<ProtectedRoute><MainLayout><MovieDetails/></MainLayout></ProtectedRoute>} />
 
         </Routes>
     </>
   )
 }
+
+
 
 export default App

@@ -21,7 +21,6 @@ function CardCarousel({ movies }) {
 
   return (
     <div className="relative overflow-hidden w-full">
-      {/* Track */}
       <div
         className="flex transition-transform duration-500"
         style={{
@@ -34,12 +33,10 @@ function CardCarousel({ movies }) {
             className="min-w-50 mx-2 bg-zinc-900 rounded-xl overflow-hidden shadow-lg"
           >
                <img
-  src={movie.img}
-  alt={movie.title}
-  className="h-64 w-full object-cover"
+              src={movie.img}
+              alt={movie.title}
+              className="h-64 w-full object-cover"
 />
-
-        
             <div className="p-3 text-center text-white font-semibold">
               {movie.title}
             </div>

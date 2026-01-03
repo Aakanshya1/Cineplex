@@ -130,3 +130,66 @@ export const sortby =[
   }
   
 ] 
+export const allMovies = [
+  { id: 1, title: "Inception", image: "https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg", rating: 8.8 },
+  { id: 2, title: "Interstellar", image: "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg", rating: 8.6 },
+  { id: 3, title: "The Dark Knight", image: "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg", rating: 9.0 },
+   {
+    id: 4,
+    title: "Stranger Things",
+    image: first,
+    rating: 8.7,
+  },
+  {
+    id: 5,
+    title: "Squid Game",
+    image: second,
+    rating: 8.0,
+  },
+  {
+    id: 6,
+    title: "Alice In Borderland",
+    image: third,
+    rating: 7.9,
+  },
+];
+export const dummyWatchlist = [
+  {
+    id: 1,
+    title: "Inception",
+    image: "https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg",
+    rating: 8.8,
+  },
+  {
+    id: 2,
+    title: "Interstellar",
+    image: "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+    rating: 8.6,
+  },
+  {
+    id: 3,
+    title: "The Dark Knight",
+    image: "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+    rating: 9.0,
+  },
+  {
+    id: 4,
+    title: "The Dark Knight",
+    image: "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+    rating: 9.0,
+  },
+];
+export const menu =[
+  {
+    label: 'Remove from Watchlist',
+    value: 'remove'
+  },
+  {
+    label: 'View Details',
+    value: 'details'
+  },
+  {
+    label:"Watched",
+    value:"watched"
+  }
+]

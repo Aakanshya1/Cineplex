@@ -27,6 +27,8 @@ const getAllUser = catchAsync(async(req,res)=>{
         })
     }
 })
+
+
 module.exports={
-    getAllUser
+    getAllUser,
 }

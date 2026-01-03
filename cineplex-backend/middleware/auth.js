@@ -12,17 +12,23 @@ const loginToken = catchAsync(async(req, res, next) => {
         })
     }
     const accessToken = token.split(" ")[1];
-    jwt.verify(accessToken,process.env.PRIVATE_KEY,(err,decodeToken)=>{
-        if (err) {
-            return res.status(401)
-            .json(({
-                message:"Invalid token."
-            }))
-        } else {
-            req.user = decodeToken;
-            next();
-        }
-    })
+    if(!accessToken){
+        return res.status(403)
+        .json({
+            message:"Access denied. Malformed token."
+        })
+    }
+    try {
+      const decodedToken = jwt.verify(accessToken, process.env.PRIVATE_KEY);
+      req.user = decodedToken;
+      return next();
+    } catch (error) {
+      console.error('Token verification error:', error.message);
+      return res.status(401).json({
+        message: 'Invalid or expired token.'
+      });
+    }
+   
 });
 
 const refreshToken = catchAsync(async (req, res, next) => {

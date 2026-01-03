@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import axios from 'axios'
+import axios from "axios"
 
 function Profile() {
   const navigate = useNavigate()
@@ -22,22 +22,32 @@ function Profile() {
     const fetchUserProfile = async () => {
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/user/profile`,
-          { headers: { Authorization: `Bearer ${token}` } }
+          `${import.meta.env.VITE_API_URL}/auth/getuser`,
+          {
+            headers: { Authorization: `Bearer ${token}` }
+          }
         )
-        setUser(res.data)
+        setUser(res.data.user)
+        console.log(res.data.user)
       } catch (err) {
-        setError("Failed to load profile")
+        console.error(err.response?.data || err.message)
+
+        if (err.response?.status === 401) {
+          localStorage.removeItem("jwtToken")
+          navigate("/login")
+        } else {
+          setError("Failed to load profile")
+        }
       } finally {
         setLoading(false)
       }
     }
 
     fetchUserProfile()
-  }, [])
+  }, [token, navigate])
 
   const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value })
+    setUser(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
   const handleSave = async () => {
@@ -66,11 +76,12 @@ function Profile() {
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
+            "Content-Type": "multipart/form-data"
+          }
         }
       )
-      setUser({ ...user, avatar: res.data.avatar })
+
+      setUser(prev => ({ ...prev, avatar: res.data.avatar }))
     } catch {
       alert("Avatar upload failed")
     }
@@ -83,37 +94,55 @@ function Profile() {
 
   if (loading) return <p className="text-white text-center mt-20">Loading...</p>
   if (error) return <p className="text-red-500 text-center mt-20">{error}</p>
+  if (!user) return null
 
   return (
     <section className="min-h-screen bg-black text-white flex justify-center pt-20">
       <div className="bg-white/10 p-8 rounded-xl w-full max-w-md flex flex-col gap-6">
 
         {/* Avatar */}
-        <div className="flex flex-col items-center gap-2">
-          <img
-            src={user.avatar || "/default-avatar.png"}
-            className="w-24 h-24 rounded-full object-cover border"
-          />
+      <div className="flex flex-col items-center gap-3">
 
-          <input
-            type="file"
-            onChange={(e) => setAvatarFile(e.target.files[0])}
-            className="text-sm"
-          />
+  {/* Hidden file input */}
+  <input
+    type="file"
+    id="avatarInput"
+    accept="image/*"
+    onChange={(e) => setAvatarFile(e.target.files[0])}
+    className="hidden"
+  />
 
-          <button
-            onClick={handleAvatarUpload}
-            className="text-xs bg-white/20 px-3 py-1 rounded"
-          >
-            Update Avatar
-          </button>
-        </div>
+  {/* Clickable avatar */}
+  <label htmlFor="avatarInput" className="cursor-pointer group">
+    <div className="relative">
+      <img
+        src={user.avatar || "/default-avatar.png"}
+        className="w-24 h-24 rounded-full object-cover border border-white/20 group-hover:opacity-80 transition"
+      />
+
+      {/* Hover overlay */}
+      <div className="absolute inset-0 flex items-center justify-center bg-black/40 text-xs text-white opacity-0 group-hover:opacity-100 transition rounded-full">
+        Change
+      </div>
+    </div>
+  </label>
+
+  {/* Upload button */}
+  {avatarFile && (
+    <button
+      onClick={handleAvatarUpload}
+      className="text-xs bg-white/20 px-3 py-1 rounded"
+    >
+      Save Avatar
+    </button>
+  )}
+</div>
 
         {/* Fields */}
         <div className="flex flex-col gap-4">
           <input
-            name="firstName"
-            value={user.firstName}
+            name="name"
+            value={user.name || ""}
             onChange={handleChange}
             disabled={!editMode}
             className="bg-black/40 p-2 rounded outline-none"
@@ -121,13 +150,13 @@ function Profile() {
 
           <input
             name="email"
-            value={user.email}
+            value={user.email || ""}
             disabled
             className="bg-black/40 p-2 rounded opacity-60"
           />
         </div>
 
-        {/* Stats */}
+        
         <div className="grid grid-cols-2 gap-4 text-center">
           <div className="bg-black/40 p-4 rounded">
             <p className="text-2xl font-bold">{user.watchlistCount || 0}</p>

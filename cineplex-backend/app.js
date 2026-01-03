@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 const userRouter = require("./router/user.router");
 const watchlistRouter = require("./router/watchlist.router");
 const reviewRouter = require('./router/review.router')
- 
+ const path = require("path");
 
 app.get("/", (req, res) => {
   res.send("Cineplex API running");
@@ -33,6 +33,7 @@ app.use(cors());
  app.use("/auth", userRouter);
   app.use("/watchlist", watchlistRouter);
   app.use("/review", reviewRouter)
+app.use('/avatars', express.static(path.join(__dirname, 'public/avatars')));
 
 db.sequelize.authenticate()
   .then(() => {

@@ -45,7 +45,64 @@ const loggedInUser = catchAsync(async(req,res)=>{
     })
 })
 
+const updateUser = catchAsync((async(req,res)=>{
+    try {
+        const userId = req.user.id;
+        const {name,email,avatar}= req.body;
+        const user = await User.findByPk(userId);
+        if(!user){
+            return res.status(404)
+            .json({
+                message:"User not found"
+            })
+        }
+        if (name !== undefined) user.name = name;
+    if (email !== undefined) user.email = email;
+    if (avatar !== undefined) user.avatar = avatar;
+    await user.save();
+    const updatedUser = await User.findByPk(userId,{
+        attributes:{exclude:['password']}
+    });
+    res.status(200)
+    .json({
+        message:"User profile updated successfully",
+        user:updatedUser
+    })
+    } catch (error) {
+       res.status(500)
+       .json({
+        message:"Internal Server Error"
+       }) 
+    }
+}));
+
+const updateAvatar = catchAsync(async (req, res) => {
+     console.log("UPLOAD HIT");
+  console.log("File:", req.file);
+  console.log("User:", req.user);
+  if (!req.file) {
+    return res.status(400).json({ message: "No file uploaded" });
+  }
+
+  const userId = req.user.id;
+
+  const avatarPath = `/avatars/${req.file.filename}`;
+
+  const user = await User.findByPk(userId);
+  user.avatar = avatarPath;
+  await user.save();
+
+  res.status(200).json({
+    message: "Avatar updated successfully",
+    avatar: avatarPath,
+  });
+});
+
+
 module.exports={
     getAllUser,
-    loggedInUser
+    loggedInUser,
+    updateUser,
+    updateAvatar
+
 }

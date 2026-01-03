@@ -98,3 +98,35 @@ export const channels =[
     value: 'apple-tv-plus'
   }
 ]
+
+export const ratings =[
+  {
+    label:"1 star",
+    value:"1"
+  },
+  {
+    label:"2 stars",
+    value:"2"
+  },
+  {    label:"3 stars",
+    value:"3"
+  },
+  {    label:"4 stars",
+    value:"4"
+  },
+  {    label:"5 stars",
+    value:"5"
+  }
+]
+export const sortby =[
+  {    label:"Popularity",
+    value:"popularity"
+  },
+  {    label:"Release Date",
+    value:"release-date"
+  },
+  {    label:"Alphabetical",
+    value:"alphabetical"
+  }
+  
+] 

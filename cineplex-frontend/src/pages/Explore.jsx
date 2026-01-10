@@ -18,10 +18,10 @@ function Explore() {
   }
 
   return (
-<section className="h-screen bg-black text-white flex flex-col md:flex-row">
-  {/* LEFT: Filters + Movies */}
+<section className=" bg-black text-white flex flex-col md:flex-row">
+
   <div className="flex flex-col lg:w-3/4 w-full pt-20">
-    {/* Filters */}
+    
     <div className="p-6 md:p-10 flex flex-col gap-4 sm:flex-row">
       <Dropdown label="Genre" items={genre} onSelect={console.log} />
       <Dropdown label="Channel" items={channels} onSelect={console.log} />
@@ -29,7 +29,6 @@ function Explore() {
       <Dropdown label="Sort By" items={sortby} onSelect={console.log} />
     </div>
 
-    {/* Movie Grid */}
     <div className="flex-1 lg:overflow-y-auto px-6 md:px-10 pb-10">
       <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
         {allMovies.map((movie) => (

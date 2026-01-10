@@ -17,7 +17,7 @@ function Watchlist() {
   }
 
   return (
-    <section className="h-screen bg-black text-white flex flex-col md:flex-row">
+    <section className="pb-5 bg-black text-white flex flex-col md:flex-row">
       {/* LEFT */}
       <div className="flex flex-col lg:w-3/4 w-full pt-10">
 
